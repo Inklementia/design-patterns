@@ -168,25 +168,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf35cd1ba11c7a647a5bef9f4c65ca94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expiriencePointsPerLevel: 200
+  experiencePointsPerLevel: 200
   onLevelUp:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1694903675}
         m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
         m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 288262650}
-        m_TargetAssemblyTypeName: Health, Assembly-CSharp
-        m_MethodName: ResetMaxHealth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

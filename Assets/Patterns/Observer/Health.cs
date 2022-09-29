@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] float maxHealth = 100f; 
+    [SerializeField] float maxHealth = 100f;
     [SerializeField] float drainPerSecond = 2f; // speed
 
     private float _currentHealth = 0f;
@@ -16,10 +16,20 @@ public class Health : MonoBehaviour
         StartCoroutine(HealthDrain());
     }
 
-    //private void Start()
-    //{
-    //    lastLevel = GetComponent<Level>().GetLevel();
-    //}
+    private void OnEnable()
+    {
+        GetComponent<Level>().onLevelUpAction += ResetMaxHealth;
+    }
+
+    // private void Start()
+    // {
+    //     //lastLevel = GetComponent<Level>().GetLevel();
+    // }
+
+    private void OnDisable()
+    {
+        GetComponent<Level>().onLevelUpAction -= ResetMaxHealth;
+    }
 
     //private void Update()
     //{
@@ -45,7 +55,7 @@ public class Health : MonoBehaviour
 
     private IEnumerator HealthDrain()
     {
-        while(_currentHealth > 0)
+        while (_currentHealth > 0)
         {
             _currentHealth -= drainPerSecond;
             yield return new WaitForSeconds(1);

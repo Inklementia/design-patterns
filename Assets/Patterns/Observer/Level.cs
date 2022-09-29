@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,34 +6,47 @@ using UnityEngine.Events;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] int expiriencePointsPerLevel = 200;
+    [SerializeField] int experiencePointsPerLevel = 200;
     [SerializeField] UnityEvent onLevelUp;
 
-    int expiriencePoints = 0;
+    // public delegate void CallbackType();
+
+    // public event CallbackType onLevelUpAction;
+
+    public event Action onLevelUpAction;
+
+    int experiencePoints = 0;
 
     private void Start()
     {
         StartCoroutine(StartLevel());
+
     }
 
-   private IEnumerator StartLevel()
+    private IEnumerator StartLevel()
     {
         while (true)
         {
             yield return new WaitForSeconds(.2f);
-            GainExpirience(10);
+            GainExperience(10);
         }
     }
 
-    private void GainExpirience(int points)
+    private void GainExperience(int points)
     {
         int level = GetLevel();
 
-        expiriencePoints += points;
+        experiencePoints += points;
 
         if (GetLevel() > level)
         {
             onLevelUp.Invoke();
+
+            if (onLevelUpAction != null)
+            {
+                onLevelUpAction();
+            }
+
             //GetComponent<Health>().ResetMaxHealth();   // why Level comp should know about Health?
         }
 
@@ -41,11 +55,11 @@ public class Level : MonoBehaviour
 
     public int GetExpirience()
     {
-        return expiriencePoints;
+        return experiencePoints;
     }
 
     public int GetLevel()
     {
-        return expiriencePoints / expiriencePointsPerLevel;
+        return experiencePoints / experiencePointsPerLevel;
     }
 }
