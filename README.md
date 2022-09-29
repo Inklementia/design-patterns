@@ -80,7 +80,7 @@ and subscribers and methods to invoke on event are added to the inspector
     {
         GetComponent<Level>().onLevelUpAction -= ResetMaxHealth;
     }
-### Deletages
+### Delegates
 **Action** is `delegate void System.Action()` so we can do the following - 
 
 `public delegate void CallbackType();`
