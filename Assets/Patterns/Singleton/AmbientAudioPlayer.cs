@@ -2,30 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmbientAudioPlayerBehaviour : MonoBehaviour
+public class AmbientAudioPlayer : MonoBehaviour
 {
-    private static AmbientAudioPlayerBehaviour instance;
-
-    private void Awake()
+    private static AmbientAudioPlayer instance = null;
+    public static AmbientAudioPlayer GetInstance()
     {
-        if(instance == null)
+        if (instance == null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            instance = new AmbientAudioPlayer();
         }
-        else if(instance != this)
-        {
-            Destroy(gameObject);
-        }
-    
+        return instance;
     }
- 
-    private AmbientAudioPlayerBehaviour()
-    {
 
+    private AmbientAudioPlayer()
+    {
     }
-    public void FadeNewMusic()
-    {
 
+    public void FadeNewMusic(AudioClip clip)
+    {
+        // TODO
     }
 }
